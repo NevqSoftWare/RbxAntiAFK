@@ -2,7 +2,7 @@
 
 **RbxAntiAFK** is a lightweight, high-performance utility designed to prevent you from being kicked for inactivity in Roblox. By simulating natural user behavior, it allows you to stay on servers 24/7. Since it operates as an external macro, it does not inject into the game, keeping your account safe.
 
-![Main UI](https://ibb.co/N6q1pG6h)
+![Main UI](https://files.catbox.moe/hnrn0e.png)
 
 ## ✨ Key Features
 - 🕒 **Custom Intervals**: Set your own action frequency in minutes.
