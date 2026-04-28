@@ -11,7 +11,7 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Windows.Forms;
 using Shell32;
-using DiscordRPC; // Нова бібліотека
+using DiscordRPC;
 using DiscordRPC.Logging;
 
 namespace RbxAntiAfk
@@ -50,19 +50,17 @@ namespace RbxAntiAfk
 
         private void InitRPC()
         {
-            // ЗАМІНИ "123456789012345678" на свій Application ID з Discord Developer Portal
             client = new DiscordRpcClient("1498376089729372180");
             client.Logger = new ConsoleLogger() { Level = LogLevel.Warning };
             client.Initialize();
 
-            // Початковий статус
             client.SetPresence(new RichPresence()
             {
                 Details = "In Menu",
                 State = "Waiting for start...",
                 Assets = new Assets()
                 {
-                    LargeImageKey = "logo", // Назва картинки, яку ти завантажиш у Discord Dev Portal
+                    LargeImageKey = "logo",
                     LargeImageText = "RbxAntiAFK v1.0",
                 }
             });
@@ -85,7 +83,6 @@ namespace RbxAntiAfk
                 btnMacro.Checked = true;
                 UpdateUI();
 
-                // Оновлюємо статус в Discord
                 client.SetPresence(new RichPresence()
                 {
                     Details = "Grinding...",
@@ -107,20 +104,17 @@ namespace RbxAntiAfk
                 btnMacro.Checked = false;
                 UpdateUI();
 
-                // Повертаємо статус "В меню"
                 client.SetPresence(new RichPresence() { Details = "In Menu", State = "Idling" });
 
                 await SendDiscordWebhook("🛑 **Macro Stopped by user**");
             }
         }
 
-        // --- Перетягування вікна ---
         private void RbxAntiAFK_MouseDown(object sender, MouseEventArgs e)
         {
             if (e.Button == MouseButtons.Left) { ReleaseCapture(); SendMessage(Handle, 0xA1, 0x2, 0); }
         }
 
-        // --- Решта методів (Webhook, Macro, і т.д.) залишаються такими ж ---
         private async System.Threading.Tasks.Task SendDiscordWebhook(string message, string imagePath = null)
         {
             if (string.IsNullOrEmpty(webhookUrl)) return;
